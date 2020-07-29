@@ -17,10 +17,13 @@ namespace AS_Zauberbild {
     let deleteShape: boolean;
     let symbole: HTMLDivElement;
     let backgroundImage: ImageData;
-    let background: boolean;
+    
 
 
 
+    let canvasData: String[] = [];  
+    let background: String; 
+   //  let url: string = 
 
     let shapes: Shape[] = [];
 
@@ -235,6 +238,8 @@ namespace AS_Zauberbild {
         }
         );
 
+        saveB.addEventListener("click", saveImage); 
+
 
         symbole.addEventListener("change", (_event: MouseEvent) => {
             console.log("Symbol wird gezeichnet");
@@ -374,6 +379,18 @@ namespace AS_Zauberbild {
                 Shape.move(1 / 10);
             Shape.draw();
         }
+    }
+
+    //Asynchrone Funktion für den Datenaustausch mit dem Server 
+
+    async function saveImage(): Promise <void> {
+        // Daten: Formatdaten des Canvas 
+        canvasData.push(canvas.width.toString(), canvas.height.toString()); 
+        // Hintergrund-Daten des Canvas 
+        canvasData.push(background); 
+
+        // Daten (Positionen) der Elemente 
+
     }
 }
 
