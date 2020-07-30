@@ -21,7 +21,7 @@ namespace AS_Zauberbild {
 // Variablen zum Abspeichern mit dem Server 
     let canvasData: String[] = [];  
     let background: String; 
-    let url: string = "https:"; 
+    let url: string = "https://zauberbildabschluss.herokuapp.com"; 
 
     let shapes: Shape[] = [];
 
