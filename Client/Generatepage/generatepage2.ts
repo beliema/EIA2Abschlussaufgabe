@@ -18,12 +18,10 @@ namespace AS_Zauberbild {
     let symbole: HTMLDivElement;
     let backgroundImage: ImageData;
     
-
-
-
+// Variablen zum Abspeichern mit dem Server 
     let canvasData: String[] = [];  
     let background: String; 
-   //  let url: string = 
+    let url: string = "https:"; 
 
     let shapes: Shape[] = [];
 
@@ -390,6 +388,32 @@ namespace AS_Zauberbild {
         canvasData.push(background); 
 
         // Daten (Positionen) der Elemente 
+        for (let shape of shapes){
+            canvasData.push(shape.position.x.toString(), shape.position.y.toString()); // x & y Daten werden in den Array gepusht 
+
+            if (shape instanceof Semicircle) {
+                canvasData.push("semicircle");
+            }
+            if (shape instanceof Circle) {
+                canvasData.push("circle");
+            }
+            if (shape instanceof Rhombus) {
+                canvasData.push("rhombus");
+            }
+            if (shape instanceof Heart) {
+                canvasData.push("heart");
+            }
+            if (shape instanceof Hexagon) {
+                canvasData.push("hexagon");
+            }
+        }
+
+        //Umwandlung des Arrays, um es für Server lesbar zu machen: 
+        let dataServer: string = JSON.stringify(canvasData); 
+        let response: Response = await fetch(url + "?" + dataServer);
+        let responsetext: string = await response.text();
+        console.log(responsetext);
+        alert(responsetext);
 
     }
 }

@@ -2,22 +2,22 @@ namespace AS_Zauberbild {
 
     export class Circle extends Shape {
 
-        constructor(_position?: Vector) {
+        constructor(_position: Vector) {
             
             super(_position); 
             
             this.velocity = new Vector(0,0); 
+            this.velocity.getRandom(200, 70);
+        
 
         }
 
         move(_timeslice: number): void {
             
-            let offset: Vector = this.velocity.copy();
-           
-            offset.x *= _timeslice * 0.5;
-            offset.y *= _timeslice;
+            let offset: Vector = new Vector(200, 70);
+            offset.scale(_timeslice);
             this.position.add(offset);
-     
+
             if (this.position.x < 0)
                 this.position.x += (crc2.canvas.width);
             if (this.position.y < 0)

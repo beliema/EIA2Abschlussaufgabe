@@ -1,0 +1,22 @@
+{
+  "name": "eia2abschluss",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node /Users/beliema/Documents/GitHub/EIA2Abschluss/Client/Generatepage/generatepage2.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beliema/EIA2Abschlussaufgabe.git"
+  },
+  "author": "beliema",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/beliema/EIA2Abschlussaufgabe/issues"
+  },
+  "homepage": "https://github.com/beliema/EIA2Abschlussaufgabe#readme",
+  "dependencies": {
+    "@types/node": "^14.0.27"
+  }
+}

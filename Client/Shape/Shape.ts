@@ -19,9 +19,19 @@ namespace AS_Zauberbild {
         }
 
         public move(_timeslice: number): void {
-            let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
+            
+            let offset: Vector = new Vector(200, 70);
             offset.scale(_timeslice);
             this.position.add(offset);
+
+            if (this.position.x < 0)
+            this.position.x += (crc2.canvas.width);
+            if (this.position.y < 0)
+                this.position.y += crc2.canvas.height;
+            if (this.position.x > (crc2.canvas.width))
+                this.position.x -= (crc2.canvas.width);
+            if (this.position.y > crc2.canvas.height)
+                this.position.y -= crc2.canvas.height;
         }
 
         public rotate(_factor: number): void {
