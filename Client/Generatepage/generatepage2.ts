@@ -35,7 +35,7 @@ namespace AS_Zauberbild {
 
 
 
-        let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector(".canvas");
+        canvas = <HTMLCanvasElement>document.querySelector(".canvas");
         if (!canvas)
             return;
 
@@ -364,18 +364,18 @@ namespace AS_Zauberbild {
         console.log("Update");
         crc2.putImageData(backgroundImage, 0, 0);
 
-        for (let Shape of shapes) {
-            if (Shape instanceof Circle)
-                Shape.move(1 / 10);
-            else if (Shape instanceof Hexagon)
-                Shape.move(1 / 20);
-            else if (Shape instanceof Semicircle)
-                Shape.move(1 / 10);
-            else if (Shape instanceof Rhombus)
-                Shape.move(1 / 50);
-            else if (Shape instanceof Heart)
-                Shape.move(1 / 10);
-            Shape.draw();
+        for (let shape of shapes) {
+            if (shape instanceof Circle)
+                shape.move(1 / 10);
+            else if (shape instanceof Hexagon)
+                shape.move(1 / 20);
+            else if (shape instanceof Semicircle)
+                shape.move(1 / 10);
+            else if (shape instanceof Rhombus)
+                shape.move(1 / 50);
+            else if (shape instanceof Heart)
+                shape.move(1 / 10);
+            shape.draw();
         }
     }
 

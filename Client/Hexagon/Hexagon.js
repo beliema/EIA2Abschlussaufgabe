@@ -6,9 +6,8 @@ var AS_Zauberbild;
             this.velocity = new AS_Zauberbild.Vector(0, 0);
         }
         move(_timeslice) {
-            let offset = this.velocity.copy();
-            offset.x *= _timeslice * 0.5;
-            offset.y *= _timeslice;
+            let offset = new AS_Zauberbild.Vector(350, 250);
+            offset.scale(_timeslice);
             this.position.add(offset);
             if (this.position.x < 0)
                 this.position.x += (AS_Zauberbild.crc2.canvas.width);

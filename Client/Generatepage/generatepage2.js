@@ -1,3 +1,11 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var AS_Zauberbild;
 (function (AS_Zauberbild) {
     console.log("Zauberbild-Editor wird geladen!");
@@ -13,12 +21,15 @@ var AS_Zauberbild;
     let deleteShape;
     let symbole;
     let backgroundImage;
+    // Variablen zum Abspeichern mit dem Server 
+    let canvasData = [];
     let background;
+    let url = "https://zauberbildabschluss.herokuapp.com";
     let shapes = [];
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
         console.log("handleLoad-Funktion wird aufgerufen");
-        let canvas = document.querySelector(".canvas");
+        canvas = document.querySelector(".canvas");
         if (!canvas)
             return;
         AS_Zauberbild.crc2 = canvas.getContext("2d");
@@ -172,6 +183,7 @@ var AS_Zauberbild;
         newCanvas.addEventListener("click", (_event) => {
             AS_Zauberbild.crc2.clearRect(0, 0, canvas.width, canvas.height);
         });
+        saveB.addEventListener("click", saveImage);
         symbole.addEventListener("change", (_event) => {
             console.log("Symbol wird gezeichnet");
             let x = 100;
@@ -268,19 +280,53 @@ var AS_Zauberbild;
     function update() {
         console.log("Update");
         AS_Zauberbild.crc2.putImageData(backgroundImage, 0, 0);
-        for (let Shape of shapes) {
-            if (Shape instanceof AS_Zauberbild.Circle)
-                Shape.move(1 / 10);
-            else if (Shape instanceof AS_Zauberbild.Hexagon)
-                Shape.move(1 / 20);
-            else if (Shape instanceof AS_Zauberbild.Semicircle)
-                Shape.move(1 / 10);
-            else if (Shape instanceof AS_Zauberbild.Rhombus)
-                Shape.move(1 / 50);
-            else if (Shape instanceof AS_Zauberbild.Heart)
-                Shape.move(1 / 10);
-            Shape.draw();
+        for (let shape of shapes) {
+            if (shape instanceof AS_Zauberbild.Circle)
+                shape.move(1 / 10);
+            else if (shape instanceof AS_Zauberbild.Hexagon)
+                shape.move(1 / 20);
+            else if (shape instanceof AS_Zauberbild.Semicircle)
+                shape.move(1 / 10);
+            else if (shape instanceof AS_Zauberbild.Rhombus)
+                shape.move(1 / 50);
+            else if (shape instanceof AS_Zauberbild.Heart)
+                shape.move(1 / 10);
+            shape.draw();
         }
+    }
+    //Asynchrone Funktion für den Datenaustausch mit dem Server 
+    function saveImage() {
+        return __awaiter(this, void 0, void 0, function* () {
+            // Daten: Formatdaten des Canvas 
+            canvasData.push(canvas.width.toString(), canvas.height.toString());
+            // Hintergrund-Daten des Canvas 
+            canvasData.push(background);
+            // Daten (Positionen) der Elemente 
+            for (let shape of shapes) {
+                canvasData.push(shape.position.x.toString(), shape.position.y.toString()); // x & y Daten werden in den Array gepusht 
+                if (shape instanceof AS_Zauberbild.Semicircle) {
+                    canvasData.push("semicircle");
+                }
+                if (shape instanceof AS_Zauberbild.Circle) {
+                    canvasData.push("circle");
+                }
+                if (shape instanceof AS_Zauberbild.Rhombus) {
+                    canvasData.push("rhombus");
+                }
+                if (shape instanceof AS_Zauberbild.Heart) {
+                    canvasData.push("heart");
+                }
+                if (shape instanceof AS_Zauberbild.Hexagon) {
+                    canvasData.push("hexagon");
+                }
+            }
+            //Umwandlung des Arrays, um es für Server lesbar zu machen: 
+            let dataServer = JSON.stringify(canvasData);
+            let response = yield fetch(url + "?" + dataServer);
+            let responsetext = yield response.text();
+            console.log(responsetext);
+            alert(responsetext);
+        });
     }
 })(AS_Zauberbild || (AS_Zauberbild = {}));
 //# sourceMappingURL=generatepage2.js.map
