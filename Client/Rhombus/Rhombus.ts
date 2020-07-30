@@ -11,6 +11,8 @@ namespace AS_Zauberbild {
             super(_position);
 
             this.velocity = new Vector(0, 0);
+            this.radius = new Vector(0, 200);
+            this.rotation = 10; 
 
         }
 
@@ -21,6 +23,7 @@ namespace AS_Zauberbild {
             crc2.save();
             crc2.beginPath();
             crc2.translate(this.position.x, this.position.y);
+            crc2.rotate(this.rotation * Math.PI / 90);
             crc2.moveTo(0, 20);
             crc2.lineTo(20, 0);
             crc2.lineTo(40, 20);
@@ -36,7 +39,10 @@ namespace AS_Zauberbild {
 
         }
         public move(_timeslice: number): void { 
-        let offset: Vector = new Vector(40, 240);
+        
+            this.rotation += 2; 
+
+            let offset: Vector = new Vector(40, 240);
             offset.scale(_timeslice);
             this.position.add(offset);
 
@@ -48,12 +54,9 @@ namespace AS_Zauberbild {
                 this.position.x -= (crc2.canvas.width);
             if (this.position.y > crc2.canvas.height)
                 this.position.y -= crc2.canvas.height;
+
         }
 
-        public rotate(_factor: number): void {
-
-            this.rotation += 4; 
-        }
 
 
     }

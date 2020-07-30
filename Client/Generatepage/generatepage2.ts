@@ -305,7 +305,7 @@ namespace AS_Zauberbild {
             //Halbkreis 
             for (let i: number = 0; i < _shape; i++) {
                 let x: number = 340;
-                let y: number = 20;
+                let y: number = 300;
                 let position: Vector = new Vector(x, y);
                 let semicircle: Semicircle = new Semicircle(position);
                 semicircle.draw();
@@ -370,7 +370,7 @@ namespace AS_Zauberbild {
             else if (shape instanceof Hexagon)
                 shape.move(1 / 20);
             else if (shape instanceof Semicircle)
-                shape.move(1 / 10);
+                shape.move(1 / 15);
             else if (shape instanceof Rhombus)
                 shape.move(1 / 50);
             else if (shape instanceof Heart)

@@ -235,7 +235,7 @@ var AS_Zauberbild;
             //Halbkreis 
             for (let i = 0; i < _shape; i++) {
                 let x = 340;
-                let y = 20;
+                let y = 300;
                 let position = new AS_Zauberbild.Vector(x, y);
                 let semicircle = new AS_Zauberbild.Semicircle(position);
                 semicircle.draw();
@@ -286,7 +286,7 @@ var AS_Zauberbild;
             else if (shape instanceof AS_Zauberbild.Hexagon)
                 shape.move(1 / 20);
             else if (shape instanceof AS_Zauberbild.Semicircle)
-                shape.move(1 / 10);
+                shape.move(1 / 15);
             else if (shape instanceof AS_Zauberbild.Rhombus)
                 shape.move(1 / 50);
             else if (shape instanceof AS_Zauberbild.Heart)

@@ -4,12 +4,14 @@ var AS_Zauberbild;
         constructor(_position) {
             super(_position);
             this.velocity = new AS_Zauberbild.Vector(0, 0);
-            this.rotation = 0;
+            this.radius = new AS_Zauberbild.Vector(40, 120);
+            this.rotation = 5;
         }
         draw() {
             AS_Zauberbild.crc2.save();
             AS_Zauberbild.crc2.beginPath();
             AS_Zauberbild.crc2.translate(this.position.x, this.position.y);
+            AS_Zauberbild.crc2.rotate(this.rotation * Math.PI / 180);
             AS_Zauberbild.crc2.arc(0, 0, 20, 0, 1 * Math.PI);
             AS_Zauberbild.crc2.closePath();
             AS_Zauberbild.crc2.lineWidth = 1;
@@ -21,6 +23,7 @@ var AS_Zauberbild;
             AS_Zauberbild.crc2.restore();
         }
         move(_timeslice) {
+            this.rotation += 5;
             let offset = new AS_Zauberbild.Vector(340, 20);
             offset.scale(_timeslice);
             this.position.add(offset);
