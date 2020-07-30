@@ -19,8 +19,8 @@ namespace AS_Zauberbild {
         }
 
         public move(_timeslice: number): void {
-            
-            let offset: Vector = new Vector(200, 70);
+
+            let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             this.position.add(offset);
 
