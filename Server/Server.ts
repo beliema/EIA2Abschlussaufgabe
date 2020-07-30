@@ -9,8 +9,8 @@ export namespace AS_Zauberbild {
 
     //AD: Open Port 
     let port: number | string | undefined = process.env.PORT; // process liefert Port 
-    if (port == undefined)
-        port = 5001;
+    // if (port == undefined)
+       //  port = 5001;
 
     startServer(port);
 
