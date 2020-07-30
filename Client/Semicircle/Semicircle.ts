@@ -33,7 +33,7 @@ namespace AS_Zauberbild {
 
         public move(_timeslice: number): void {
             
-            let offset: Vector = new Vector(200, 70);
+            let offset: Vector = new Vector(340, 20);
             offset.scale(_timeslice);
             this.position.add(offset);
 
