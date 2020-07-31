@@ -2,6 +2,8 @@ namespace AS_Zauberbild {
 
     export class Hexagon extends Shape {
 
+        color: string; 
+
         constructor(_position?: Vector) {
 
             super(_position);
