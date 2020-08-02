@@ -384,7 +384,7 @@ namespace AS_Zauberbild {
         // Daten: Formatdaten des Canvas 
         canvasData.push(canvas.width.toString(), canvas.height.toString()); 
         // Hintergrund-Daten des Canvas 
-        canvasData.push(background.toString()); 
+        canvasData.push(backgroundImage.toString()); 
 
         // Daten (Positionen) der Elemente 
         for (let shape of shapes){

@@ -300,7 +300,7 @@ var AS_Zauberbild;
             // Daten: Formatdaten des Canvas 
             canvasData.push(canvas.width.toString(), canvas.height.toString());
             // Hintergrund-Daten des Canvas 
-            canvasData.push(background.toString());
+            canvasData.push(backgroundImage.toString());
             // Daten (Positionen) der Elemente 
             for (let shape of shapes) {
                 canvasData.push(shape.position.x.toString(), shape.position.y.toString()); // x & y Daten werden in den Array gepusht 
