@@ -8,21 +8,25 @@
 export namespace AS_Zauberbild { 
     console.log("Server Test"); 
 
+    interface savedPicture {
+        [type: string]: string | string[];
+    }
+
     //AD: Open Port 
     let port: number | string | undefined = process.env.PORT; // process liefert Port 
     // if (port == undefined)
        //  port = 5001;
 
-    let savedpictures: Collection //Variable, die auf die Collections verweisen soll mit der gearbeitet wird 
+    let savedpictures: Mongo.Collection; //Variable, die auf die Collections verweisen soll mit der gearbeitet wird 
     let databaseUrl: string = "mongodb://localhost:27017";
     startServer(port);
     connectToDatabase(databaseUrl);
 
 
-    async function startServer(_port: number | string): Promise<void> {
+    async function startServer(_port: number | string): Promise<void> { // asynchrone Funktion, die Portt entgegen nehmen soll 
         //AD: create Server
         let server: Http.Server = Http.createServer();
-        console.log("Server starting on port:" + _port);
+        console.log("Server wird auf Port" + _port + "gestartet");
 
         //AD: Add RequestListener 
         server.listen(_port);
@@ -30,17 +34,15 @@ export namespace AS_Zauberbild {
     }
  
     async function connectToDatabase(_url: string): Promise<void> {
-        let MongoClient = require('mongodb').MongoClient;
-        let uri = "mongodb+srv://beliema:<Wandalo2->@eia2-ejwj9.mongodb.net/<zauberbildDB>?retryWrites=true&w=majority";
-        let client = new MongoClient(uri, { useNewUrlParser: true });
-        client.connect(err => {
-          let collection = client.db("test").collection("devices");
-          // perform actions on the collection object
-          client.close();
-        });
-        
+        let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true}; // mit diesen beiden Optionen Verbindung zur DB herstellen
+        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options); // Client erzeugt 
+        //Aufbau Verbindung 
+        await mongoClient.connect();
+        //Wert für savedpictures definieren 
+        savedpictures = mongoClient.db("zauberbildDB").collection("savedpictures"); // Client wird gesagt: gehe in die Datenbank zauberbilddb und hole dir da die collection savedpictures 
+        console.log("Database connection ", savedpictures != undefined);
     }
- 
+
     async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
         console.log("handleRequest funktioniert"); 
 
@@ -55,10 +57,18 @@ export namespace AS_Zauberbild {
             }
 
             //AD: fill response 
-            let jsonString: string = JSON.stringify(url.query);
+            let jsonString: string = JSON.stringify(url.query); 
             _response.write(jsonString);
+
+            storeSavedPictures(url.query); 
         }
         //AD send response 
         _response.end();
     }
+
+    function storeSavedPictures(_savedpictures: savedPicture ): void {
+        savedpictures.insert(_savedpictures);
+    }
 }
+
+//URI = unified ressource identifier 
