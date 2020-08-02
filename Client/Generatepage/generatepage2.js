@@ -232,42 +232,42 @@ var AS_Zauberbild;
             circle.draw();
             //shapes.push(circle);
             console.log(shapes);
-            //Halbkreis 
-            for (let i = 0; i < _shape; i++) {
-                let x = 340;
-                let y = 300;
-                let position = new AS_Zauberbild.Vector(x, y);
-                let semicircle = new AS_Zauberbild.Semicircle(position);
-                semicircle.draw();
-                console.log(shapes);
-            }
-            //Raute
-            for (let i = 0; i < _shape; i++) {
-                let x = 40;
-                let y = 240;
-                let position = new AS_Zauberbild.Vector(x, y);
-                let rhombus = new AS_Zauberbild.Rhombus(position);
-                rhombus.draw();
-                console.log(shapes);
-            }
-            //Herz 
-            for (let i = 0; i < _shape; i++) {
-                let x = 50;
-                let y = 20;
-                let position = new AS_Zauberbild.Vector(x, y);
-                let heart = new AS_Zauberbild.Heart(position);
-                heart.draw();
-                console.log(shapes);
-            }
-            //Hexagon 
-            for (let i = 0; i < _shape; i++) {
-                let x = 350;
-                let y = 250;
-                let position = new AS_Zauberbild.Vector(x, y);
-                let hexagon = new AS_Zauberbild.Hexagon(position);
-                hexagon.draw();
-                console.log(shapes);
-            }
+        }
+        //Halbkreis 
+        for (let i = 0; i < _shape; i++) {
+            let x = 340;
+            let y = 300;
+            let position = new AS_Zauberbild.Vector(x, y);
+            let semicircle = new AS_Zauberbild.Semicircle(position);
+            semicircle.draw();
+            console.log(shapes);
+        }
+        //Raute
+        for (let i = 0; i < _shape; i++) {
+            let x = 40;
+            let y = 240;
+            let position = new AS_Zauberbild.Vector(x, y);
+            let rhombus = new AS_Zauberbild.Rhombus(position);
+            rhombus.draw();
+            console.log(shapes);
+        }
+        //Herz 
+        for (let i = 0; i < _shape; i++) {
+            let x = 50;
+            let y = 20;
+            let position = new AS_Zauberbild.Vector(x, y);
+            let heart = new AS_Zauberbild.Heart(position);
+            heart.draw();
+            console.log(shapes);
+        }
+        //Hexagon 
+        for (let i = 0; i < _shape; i++) {
+            let x = 350;
+            let y = 250;
+            let position = new AS_Zauberbild.Vector(x, y);
+            let hexagon = new AS_Zauberbild.Hexagon(position);
+            hexagon.draw();
+            console.log(shapes);
         }
     }
     function createBackground() {
@@ -300,7 +300,7 @@ var AS_Zauberbild;
             // Daten: Formatdaten des Canvas 
             canvasData.push(canvas.width.toString(), canvas.height.toString());
             // Hintergrund-Daten des Canvas 
-            canvasData.push(background);
+            canvasData.push(background.toString());
             // Daten (Positionen) der Elemente 
             for (let shape of shapes) {
                 canvasData.push(shape.position.x.toString(), shape.position.y.toString()); // x & y Daten werden in den Array gepusht 

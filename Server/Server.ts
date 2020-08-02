@@ -1,5 +1,6 @@
- import * as Http from "http"; //Importieremir alles auf dem Modul HTTP und setze es in den Code 
+ import * as Http from "http"; //Importiere mir alles auf dem Modul HTTP und setze es in den Code 
  import * as Url from "url"; 
+ import * as Mongo from "mongodb";
 
 // Module von Node, da kein HTML-File vorhanden über das andere Skripe eingelenkt werden können
 // 
@@ -12,7 +13,10 @@ export namespace AS_Zauberbild {
     // if (port == undefined)
        //  port = 5001;
 
+    let savedpictures: Collection //Variable, die auf die Collections verweisen soll mit der gearbeitet wird 
+    let databaseUrl: string = "mongodb://localhost:27017";
     startServer(port);
+    connectToDatabase(databaseUrl);
 
 
     async function startServer(_port: number | string): Promise<void> {
@@ -25,6 +29,17 @@ export namespace AS_Zauberbild {
         server.addListener("request", handleRequest);
     }
  
+    async function connectToDatabase(_url: string): Promise<void> {
+        let MongoClient = require('mongodb').MongoClient;
+        let uri = "mongodb+srv://beliema:<Wandalo2->@eia2-ejwj9.mongodb.net/<zauberbildDB>?retryWrites=true&w=majority";
+        let client = new MongoClient(uri, { useNewUrlParser: true });
+        client.connect(err => {
+          let collection = client.db("test").collection("devices");
+          // perform actions on the collection object
+          client.close();
+        });
+        
+    }
  
     async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
         console.log("handleRequest funktioniert"); 

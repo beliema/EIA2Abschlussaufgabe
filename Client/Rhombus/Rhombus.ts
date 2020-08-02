@@ -6,7 +6,7 @@ namespace AS_Zauberbild {
         Velocity: Vector; 
 
 
-        constructor(_position?: Vector) {
+        constructor(_position: Vector) {
 
             super(_position);
 

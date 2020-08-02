@@ -2,13 +2,15 @@ namespace AS_Zauberbild {
 
     export class Hexagon extends Shape {
 
-        color: string; 
+        
+        velocity: Vector; 
 
         constructor(_position?: Vector) {
 
             super(_position);
 
             this.velocity = new Vector(0,0); 
+            
         }
 
         move(_timeslice: number): void {
@@ -49,5 +51,6 @@ namespace AS_Zauberbild {
             
             crc2.restore(); 
         }
+
     }
 }

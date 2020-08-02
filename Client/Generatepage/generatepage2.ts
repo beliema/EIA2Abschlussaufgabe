@@ -292,16 +292,16 @@ namespace AS_Zauberbild {
     function createShapes(): void {
         let _shape: number;
 
-        //Kreis 
-        for (let i: number = 0; i < _shape; i++) {
-            let x: number = 200;
-            let y: number = 70;
-            let position: Vector = new Vector(x, y);
-            let circle: Circle = new Circle(position);
-            circle.draw();
-            //shapes.push(circle);
-            console.log(shapes);
-
+            //Kreis 
+            for (let i: number = 0; i < _shape; i++) {
+                let x: number = 200;
+                let y: number = 70;
+                let position: Vector = new Vector(x, y);
+                let circle: Circle = new Circle(position);
+                circle.draw();
+                //shapes.push(circle);
+                console.log(shapes);
+            }
             //Halbkreis 
             for (let i: number = 0; i < _shape; i++) {
                 let x: number = 340;
@@ -345,7 +345,6 @@ namespace AS_Zauberbild {
                 console.log(shapes);
 
             }
-        }
     }
 
     function createBackground(): void {
@@ -385,7 +384,7 @@ namespace AS_Zauberbild {
         // Daten: Formatdaten des Canvas 
         canvasData.push(canvas.width.toString(), canvas.height.toString()); 
         // Hintergrund-Daten des Canvas 
-        canvasData.push(background); 
+        canvasData.push(background.toString()); 
 
         // Daten (Positionen) der Elemente 
         for (let shape of shapes){
