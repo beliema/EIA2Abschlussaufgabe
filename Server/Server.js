@@ -21,7 +21,7 @@ var AS_Zauberbild;
     // if (port == undefined)
     //  port = 5001;
     let savedpictures; //Variable, die auf die Collections verweisen soll mit der gearbeitet wird 
-    let databaseUrl = "mongodb://localhost:27017";
+    let databaseUrl = "mongodb+srv://beliema:<Wandalo2->@eia2-ejwj9.mongodb.net/<zauberbildDB>?retryWrites=true&w=majority";
     startServer(port);
     connectToDatabase(databaseUrl);
     function startServer(_port) {

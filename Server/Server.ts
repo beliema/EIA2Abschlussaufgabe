@@ -18,7 +18,7 @@ export namespace AS_Zauberbild {
        //  port = 5001;
 
     let savedpictures: Mongo.Collection; //Variable, die auf die Collections verweisen soll mit der gearbeitet wird 
-    let databaseUrl: string = "mongodb://localhost:27017";
+    let databaseUrl: string = "mongodb+srv://beliema:<Wandalo2->@eia2-ejwj9.mongodb.net/<zauberbildDB>?retryWrites=true&w=majority";
     startServer(port);
     connectToDatabase(databaseUrl);
 
