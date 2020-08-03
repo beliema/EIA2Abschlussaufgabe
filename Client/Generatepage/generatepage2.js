@@ -328,7 +328,9 @@ var AS_Zauberbild;
         });
     }
     function deleteImage(_event) {
-        AS_Zauberbild.crc2.clearRect(0, 0, canvas.width, canvas.height);
+        // crc2.clearRect(0, 0, canvas.width, canvas.height)
+        shapes = [];
+        console.log("Dein Zauberbild wurde gelöscht :( ");
     }
 })(AS_Zauberbild || (AS_Zauberbild = {}));
 //# sourceMappingURL=generatepage2.js.map
