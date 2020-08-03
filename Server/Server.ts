@@ -2,8 +2,8 @@
  import * as Url from "url"; 
  import * as Mongo from "mongodb";
 
-// Module von Node, da kein HTML-File vorhanden über das andere Skripe eingelenkt werden können
- 
+// Module von Node, da kein HTML-File vorhanden über das andere Skript eingelenkt werden können
+
 
 export namespace AS_Zauberbild { 
     console.log("Server Test"); 

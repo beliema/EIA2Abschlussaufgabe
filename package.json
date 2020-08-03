@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node EIA2Abschluss/Abschluss/Server/Server.js"
+    "start": "node Server/Server.js"
   },
   "repository": {
     "type": "git",

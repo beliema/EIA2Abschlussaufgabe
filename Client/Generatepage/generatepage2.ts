@@ -60,6 +60,7 @@ namespace AS_Zauberbild {
         newCanvas = <HTMLButtonElement>document.getElementById("neuCanvas");
         saveB = <HTMLButtonElement>document.getElementById("speichern");
         window.setInterval(update, 100);
+        alert("Willkommen zum Zauberbild-Editor! Kreire dein eigenes Zauberbild und speichere es anschließend! Du kannst alte Bilder auch wieder laden. Viel Spaß!"); 
 
 
 

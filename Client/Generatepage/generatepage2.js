@@ -47,6 +47,7 @@ var AS_Zauberbild;
         newCanvas = document.getElementById("neuCanvas");
         saveB = document.getElementById("speichern");
         window.setInterval(update, 100);
+        alert("Willkommen zum Zauberbild-Editor! Kreire dein eigenes Zauberbild und speichere es anschließend! Du kannst alte Bilder auch wieder laden. Viel Spaß!");
         // Installation der Listener 
         format.addEventListener("change", (_event) => {
             let format1 = document.getElementById("Format1");
