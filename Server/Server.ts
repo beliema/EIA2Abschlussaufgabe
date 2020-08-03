@@ -107,9 +107,9 @@ export namespace AS_Zauberbild {
         _response.end();
     }
 
-   /* function storeSavedPictures(_savedpictures: savedPicture ): void {
+    function storeSavedPictures(_savedpictures: savedPicture ): void {
         savedpictures.insert(_savedpictures);
-    } */ 
+    } 
 
 
     function showPicture(_item: object): void {
@@ -121,9 +121,9 @@ export namespace AS_Zauberbild {
 
     //Funktion: Daten aus der Datenbank auslesen 
 
-    function readResponse(_response: Http.ServerResponse): void {
+    function receiveSavedPictures(_response: Http.ServerResponse): void {
         // err = error
-        CanvasCollection.find({}).toArray(function (err, result) {
+        CanvasCollection.find({}).toArray(function (err: any, result: any) {
             // Wenn Fehler passiert, diesen rausschmeißen
             _response.write("vor error");
             if (err) throw err;
