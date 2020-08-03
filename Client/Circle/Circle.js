@@ -5,7 +5,7 @@ var AS_Zauberbild;
             super(_position);
             this.velocity = new AS_Zauberbild.Vector(0, 0);
             this.velocity.getRandom(200, 70);
-            this.color = ["#F3F781", "#FAAC58", "#F78181", "#5882FA", "#01DF01", "#9F81F7"];
+            // this.color = ["#F3F781", "#FAAC58", "#F78181", "#5882FA", "#01DF01", "#9F81F7"];
         }
         move(_timeslice) {
             let offset = new AS_Zauberbild.Vector(200, 70);
@@ -43,6 +43,6 @@ var AS_Zauberbild;
         }
     }
     AS_Zauberbild.Circle = Circle;
-    setInterval(recolor(_color, String), 50);
+    // setInterval(recolor(_color: String), 50); 
 })(AS_Zauberbild || (AS_Zauberbild = {}));
 //# sourceMappingURL=Circle.js.map

@@ -18,7 +18,7 @@ var AS_Zauberbild;
     let rhombusIn;
     let heartIn;
     let hexagonIn;
-    let deleteShape;
+    // let deleteShape: boolean;
     let symbole;
     let backgroundImage;
     // Variablen zum Abspeichern mit dem Server 
@@ -29,12 +29,13 @@ var AS_Zauberbild;
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
         console.log("handleLoad-Funktion wird aufgerufen");
+        //Canvas definieren
         canvas = document.querySelector(".canvas");
         if (!canvas)
             return;
         AS_Zauberbild.crc2 = canvas.getContext("2d");
         createBackground();
-        deleteShape = true;
+        // deleteShape = true;
         // Verknüfung der Variablen mit den jeweiligen HTML-Elementen 
         let format = document.querySelector("div#Zeichenfläche");
         backgroundColor = document.querySelector("#Farbauswahl");
@@ -47,8 +48,8 @@ var AS_Zauberbild;
         newCanvas = document.getElementById("neuCanvas");
         saveB = document.getElementById("speichern");
         window.setInterval(update, 100);
-        alert("Willkommen zum Zauberbild-Editor! Kreire dein eigenes Zauberbild und speichere es anschließend! Du kannst alte Bilder auch wieder laden. Viel Spaß!");
-        // Installation der Listener 
+        alert("Willkommen zum Zauberbild-Editor! Kreiere dein eigenes Zauberbild und speichere es anschließend! Du kannst alte Bilder auch wieder laden. Viel Spaß!");
+        // Installation der Listener mit Funktionen 
         format.addEventListener("change", (_event) => {
             let format1 = document.getElementById("Format1");
             let format2 = document.getElementById("Format2");
@@ -181,9 +182,7 @@ var AS_Zauberbild;
             }
             backgroundImage = AS_Zauberbild.crc2.getImageData(0, 0, canvas.width, canvas.height);
         });
-        newCanvas.addEventListener("click", (_event) => {
-            AS_Zauberbild.crc2.clearRect(0, 0, canvas.width, canvas.height);
-        });
+        newCanvas.addEventListener("click", deleteImage);
         saveB.addEventListener("click", saveImage);
         symbole.addEventListener("change", (_event) => {
             console.log("Symbol wird gezeichnet");
@@ -327,6 +326,9 @@ var AS_Zauberbild;
             console.log(responsetext);
             alert(responsetext);
         });
+    }
+    function deleteImage(_event) {
+        AS_Zauberbild.crc2.clearRect(0, 0, canvas.width, canvas.height);
     }
 })(AS_Zauberbild || (AS_Zauberbild = {}));
 //# sourceMappingURL=generatepage2.js.map

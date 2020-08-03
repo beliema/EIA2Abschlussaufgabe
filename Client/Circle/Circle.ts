@@ -11,7 +11,7 @@ namespace AS_Zauberbild {
 
             this.velocity = new Vector(0, 0);
             this.velocity.getRandom(200, 70);
-            this.color = ["#F3F781", "#FAAC58", "#F78181", "#5882FA", "#01DF01", "#9F81F7"];
+            // this.color = ["#F3F781", "#FAAC58", "#F78181", "#5882FA", "#01DF01", "#9F81F7"];
 
 
 
@@ -64,5 +64,5 @@ namespace AS_Zauberbild {
         }
     }
 
-    setInterval(recolor(_color: String), 50); 
+   // setInterval(recolor(_color: String), 50); 
 }

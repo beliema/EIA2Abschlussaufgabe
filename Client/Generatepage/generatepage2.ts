@@ -14,7 +14,7 @@ namespace AS_Zauberbild {
     let heartIn: HTMLInputElement;
     let hexagonIn: HTMLInputElement;
 
-    let deleteShape: boolean;
+    // let deleteShape: boolean;
     let symbole: HTMLDivElement;
     let backgroundImage: ImageData;
     
@@ -33,7 +33,7 @@ namespace AS_Zauberbild {
     function handleLoad(_event: Event): void {
         console.log("handleLoad-Funktion wird aufgerufen");
 
-
+        //Canvas definieren
 
         canvas = <HTMLCanvasElement>document.querySelector(".canvas");
         if (!canvas)
@@ -43,7 +43,7 @@ namespace AS_Zauberbild {
 
         createBackground(); 
 
-        deleteShape = true;
+        // deleteShape = true;
 
         // Verknüfung der Variablen mit den jeweiligen HTML-Elementen 
 
@@ -60,11 +60,11 @@ namespace AS_Zauberbild {
         newCanvas = <HTMLButtonElement>document.getElementById("neuCanvas");
         saveB = <HTMLButtonElement>document.getElementById("speichern");
         window.setInterval(update, 100);
-        alert("Willkommen zum Zauberbild-Editor! Kreire dein eigenes Zauberbild und speichere es anschließend! Du kannst alte Bilder auch wieder laden. Viel Spaß!"); 
+        alert("Willkommen zum Zauberbild-Editor! Kreiere dein eigenes Zauberbild und speichere es anschließend! Du kannst alte Bilder auch wieder laden. Viel Spaß!"); 
 
 
 
-        // Installation der Listener 
+        // Installation der Listener mit Funktionen 
 
         format.addEventListener("change", (_event: Event): any => {
 
@@ -232,11 +232,7 @@ namespace AS_Zauberbild {
 
         });
 
-        newCanvas.addEventListener("click", (_event: Event) => {
-            crc2.clearRect(0, 0, canvas.width, canvas.height)
-        }
-        );
-
+        newCanvas.addEventListener("click", deleteImage); 
         saveB.addEventListener("click", saveImage); 
 
 
@@ -415,6 +411,11 @@ namespace AS_Zauberbild {
         alert(responsetext);
 
     }
+
+    function deleteImage(_event: Event): void {
+        crc2.clearRect(0, 0, canvas.width, canvas.height)
+    }
+
 }
 
 
