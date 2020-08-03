@@ -43,7 +43,7 @@ namespace AS_Zauberbild {
 
         createBackground(); 
 
-        // deleteShape = true;
+        deleteShape = true;
 
         // Verknüfung der Variablen mit den jeweiligen HTML-Elementen 
 

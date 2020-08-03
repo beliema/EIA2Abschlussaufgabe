@@ -34,7 +34,7 @@ var AS_Zauberbild;
             return;
         AS_Zauberbild.crc2 = canvas.getContext("2d");
         createBackground();
-        // deleteShape = true;
+        deleteShape = true;
         // Verknüfung der Variablen mit den jeweiligen HTML-Elementen 
         let format = document.querySelector("div#Zeichenfläche");
         backgroundColor = document.querySelector("#Farbauswahl");
