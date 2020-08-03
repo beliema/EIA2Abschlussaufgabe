@@ -2,6 +2,7 @@ namespace AS_Zauberbild {
 
     export class Heart extends Shape {
         
+        scale: number; 
         size: number; 
         Velocity: Vector; 
         
@@ -9,6 +10,7 @@ namespace AS_Zauberbild {
         constructor(_position?: Vector) {
 
             super(_position);
+            this.scale = 0.4;
 
             this.velocity = new Vector ( 0,0); 
 
@@ -17,7 +19,7 @@ namespace AS_Zauberbild {
         draw(): void {     
             
                 crc2.save(); 
-                crc2.scale(0.4, 0.4); 
+                //crc2.scale(0.4, 0.4); 
                 crc2.beginPath();
                 crc2.translate(this.position.x, this.position.y);
                 crc2.bezierCurveTo(75, 40, 70, 25, 50, 25);
@@ -29,12 +31,16 @@ namespace AS_Zauberbild {
                 crc2.closePath(); 
                 crc2.fillStyle = "#F5A9A9";
                 crc2.fill();
+                crc2.scale(Math.PI / 0.2);
                 crc2.stroke(); 
 
                 crc2.restore(); 
         }
 
         public move (_timeslice: number): void {
+
+            this.scale +=3; 
+
             let offset: Vector = new Vector(50, 20);
             offset.scale(_timeslice);
             this.position.add(offset);

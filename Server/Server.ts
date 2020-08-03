@@ -3,7 +3,7 @@
  import * as Mongo from "mongodb";
 
 // Module von Node, da kein HTML-File vorhanden über das andere Skripe eingelenkt werden können
-// 
+ 
 
 export namespace AS_Zauberbild { 
     console.log("Server Test"); 
