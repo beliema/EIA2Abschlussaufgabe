@@ -231,7 +231,6 @@ var AS_Zauberbild;
             let position = new AS_Zauberbild.Vector(x, y);
             let circle = new AS_Zauberbild.Circle(position);
             circle.draw();
-            //shapes.push(circle);
             console.log(shapes);
         }
         //Halbkreis 

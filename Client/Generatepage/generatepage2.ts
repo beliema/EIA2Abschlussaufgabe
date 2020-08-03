@@ -300,7 +300,6 @@ namespace AS_Zauberbild {
                 let position: Vector = new Vector(x, y);
                 let circle: Circle = new Circle(position);
                 circle.draw();
-                //shapes.push(circle);
                 console.log(shapes);
             }
             //Halbkreis 
@@ -348,7 +347,7 @@ namespace AS_Zauberbild {
             }
     }
 
-    function createBackground(): void {
+    function createBackground(): void { //Erstellung dieser Funktion, da backgroundImage erst dann definiert wurde, wenn ich die HG-Farbe ausgewählt hatte, Zuweisung ImageData so 
 
 
         let x: number = 0;
