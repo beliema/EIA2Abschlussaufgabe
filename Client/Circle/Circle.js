@@ -3,10 +3,9 @@ var AS_Zauberbild;
     class Circle extends AS_Zauberbild.Shape {
         constructor(_position) {
             super(_position);
-            this.colorArray = ["#F3F781", "#FAAC58", "#F78181", "#5882FA", "#01DF01", "#9F81F7"];
             this.velocity = new AS_Zauberbild.Vector(0, 0);
             this.velocity.getRandom(200, 70);
-            this.colorArray = [];
+            this.color = ["#F3F781", "#FAAC58", "#F78181", "#5882FA", "#01DF01", "#9F81F7"];
         }
         move(_timeslice) {
             let offset = new AS_Zauberbild.Vector(200, 70);

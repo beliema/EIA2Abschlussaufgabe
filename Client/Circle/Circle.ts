@@ -2,7 +2,8 @@ namespace AS_Zauberbild {
 
     export class Circle extends Shape {
 
-        colorArray: string[] = ["#F3F781", "#FAAC58", "#F78181", "#5882FA", "#01DF01", "#9F81F7"];
+        color: String; 
+    
 
         constructor(_position: Vector) {
 
@@ -10,7 +11,8 @@ namespace AS_Zauberbild {
 
             this.velocity = new Vector(0, 0);
             this.velocity.getRandom(200, 70);
-            this.colorArray = [];
+            this.color = ["#F3F781", "#FAAC58", "#F78181", "#5882FA", "#01DF01", "#9F81F7"];
+
 
 
         }
