@@ -21,7 +21,7 @@ export namespace AS_Zauberbild {
     let mongoClient: Mongo.MongoClient;
     let options: Mongo.MongoClientOptions;
     let allpictures: string[] = []; 
-    let databaseUrl: string = "mongodb+srv://beliema:<Wandalo2->@eia2-ejwj9.mongodb.net/<zauberbildDB>?retryWrites=true&w=majority";
+    let databaseUrl: string = "mongodb+srv://beliema:<Wandalo2->@eia2-ejwj9.mongodb.net/<zauberbildDB>?retryWrites=true&w=majority"; // Verbindungslink zu Mongo
     startServer(port);
     connectToDatabase(databaseUrl);
 
@@ -43,7 +43,7 @@ export namespace AS_Zauberbild {
         //Aufbau Verbindung 
         await mongoClient.connect();
         //Wert für savedpictures definieren 
-        savedpictures = mongoClient.db("zauberbildDB").collection("savedpictures"); // Client wird gesagt: gehe in die Datenbank zauberbilddb und hole dir da die collection savedpictures 
+        savedpictures = mongoClient.db("zauberbildDB").collection("savedpictures"); // Client wird gesagt: gehe in die Datenbank zauberbilddb und hole dir da die Collection savedpictures 
         console.log("Database connection ", savedpictures != undefined);
     }
 
