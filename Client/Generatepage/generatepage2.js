@@ -298,35 +298,38 @@ var AS_Zauberbild;
     //Asynchrone Funktion für den Datenaustausch mit dem Server 
     function saveImage() {
         return __awaiter(this, void 0, void 0, function* () {
-            // Daten: Formatdaten des Canvas 
-            canvasData.push(canvas.width.toString(), canvas.height.toString());
-            // Hintergrund-Daten des Canvas 
-            canvasData.push(backgroundImage.toString());
-            // Daten (Positionen) der Elemente 
-            for (let shape of shapes) {
-                canvasData.push(shape.position.x.toString(), shape.position.y.toString()); // x & y Daten werden in den Array gepusht 
-                if (shape instanceof AS_Zauberbild.Semicircle) {
-                    canvasData.push("semicircle");
+            let imagename = prompt("Speichere dein Meisterwerk: ");
+            if (imagename != null) {
+                // Daten: Formatdaten des Canvas 
+                canvasData.push(canvas.width.toString(), canvas.height.toString());
+                // Hintergrund-Daten des Canvas 
+                canvasData.push(backgroundImage.toString());
+                // Daten (Positionen) der Elemente 
+                for (let shape of shapes) {
+                    canvasData.push(shape.position.x.toString(), shape.position.y.toString()); // x & y Daten werden in den Array gepusht 
+                    if (shape instanceof AS_Zauberbild.Semicircle) {
+                        canvasData.push("semicircle");
+                    }
+                    if (shape instanceof AS_Zauberbild.Circle) {
+                        canvasData.push("circle");
+                    }
+                    if (shape instanceof AS_Zauberbild.Rhombus) {
+                        canvasData.push("rhombus");
+                    }
+                    if (shape instanceof AS_Zauberbild.Heart) {
+                        canvasData.push("heart");
+                    }
+                    if (shape instanceof AS_Zauberbild.Hexagon) {
+                        canvasData.push("hexagon");
+                    }
                 }
-                if (shape instanceof AS_Zauberbild.Circle) {
-                    canvasData.push("circle");
-                }
-                if (shape instanceof AS_Zauberbild.Rhombus) {
-                    canvasData.push("rhombus");
-                }
-                if (shape instanceof AS_Zauberbild.Heart) {
-                    canvasData.push("heart");
-                }
-                if (shape instanceof AS_Zauberbild.Hexagon) {
-                    canvasData.push("hexagon");
-                }
+                //Umwandlung des Arrays, um es für Server lesbar zu machen: 
+                let dataServer = JSON.stringify(canvasData);
+                let response = yield fetch(url + "?" + dataServer);
+                let responsetext = yield response.text();
+                console.log(responsetext);
+                alert(responsetext);
             }
-            //Umwandlung des Arrays, um es für Server lesbar zu machen: 
-            let dataServer = JSON.stringify(canvasData);
-            let response = yield fetch(url + "?" + dataServer);
-            let responsetext = yield response.text();
-            console.log(responsetext);
-            alert(responsetext);
         });
     }
     function deleteImage(_event) {

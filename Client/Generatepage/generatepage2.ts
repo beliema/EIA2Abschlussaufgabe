@@ -65,7 +65,7 @@ namespace AS_Zauberbild {
         backgroundColor.addEventListener("change", changeCanvasColor);
         newCanvas.addEventListener("click", deleteImage);
         saveB.addEventListener("click", saveImage);
-        symbole.addEventListener("change", chooseSymbol); 
+        symbole.addEventListener("change", chooseSymbol);
 
     }
 
@@ -373,39 +373,46 @@ namespace AS_Zauberbild {
     //Asynchrone Funktion für den Datenaustausch mit dem Server 
 
     async function saveImage(): Promise<void> {
-        // Daten: Formatdaten des Canvas 
-        canvasData.push(canvas.width.toString(), canvas.height.toString());
-        // Hintergrund-Daten des Canvas 
-        canvasData.push(backgroundImage.toString());
 
-        // Daten (Positionen) der Elemente 
-        for (let shape of shapes) {
-            canvasData.push(shape.position.x.toString(), shape.position.y.toString()); // x & y Daten werden in den Array gepusht 
+        let imagename: string | null = prompt("Speichere dein Meisterwerk: ");
 
-            if (shape instanceof Semicircle) {
-                canvasData.push("semicircle");
+
+        if (imagename != null) {
+
+
+            // Daten: Formatdaten des Canvas 
+            canvasData.push(canvas.width.toString(), canvas.height.toString());
+            // Hintergrund-Daten des Canvas 
+            canvasData.push(backgroundImage.toString());
+
+            // Daten (Positionen) der Elemente 
+            for (let shape of shapes) {
+                canvasData.push(shape.position.x.toString(), shape.position.y.toString()); // x & y Daten werden in den Array gepusht 
+
+                if (shape instanceof Semicircle) {
+                    canvasData.push("semicircle");
+                }
+                if (shape instanceof Circle) {
+                    canvasData.push("circle");
+                }
+                if (shape instanceof Rhombus) {
+                    canvasData.push("rhombus");
+                }
+                if (shape instanceof Heart) {
+                    canvasData.push("heart");
+                }
+                if (shape instanceof Hexagon) {
+                    canvasData.push("hexagon");
+                }
             }
-            if (shape instanceof Circle) {
-                canvasData.push("circle");
-            }
-            if (shape instanceof Rhombus) {
-                canvasData.push("rhombus");
-            }
-            if (shape instanceof Heart) {
-                canvasData.push("heart");
-            }
-            if (shape instanceof Hexagon) {
-                canvasData.push("hexagon");
-            }
+
+            //Umwandlung des Arrays, um es für Server lesbar zu machen: 
+            let dataServer: string = JSON.stringify(canvasData);
+            let response: Response = await fetch(url + "?" + dataServer);
+            let responsetext: string = await response.text();
+            console.log(responsetext);
+            alert(responsetext);
         }
-
-        //Umwandlung des Arrays, um es für Server lesbar zu machen: 
-        let dataServer: string = JSON.stringify(canvasData);
-        let response: Response = await fetch(url + "?" + dataServer);
-        let responsetext: string = await response.text();
-        console.log(responsetext);
-        alert(responsetext);
-
     }
 
     function deleteImage(_event: Event): void {
