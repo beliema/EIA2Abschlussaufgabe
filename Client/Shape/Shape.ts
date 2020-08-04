@@ -8,6 +8,7 @@ namespace AS_Zauberbild {
         public size: number; 
         public radius: Vector; 
         public rotation: number;
+        public color: string; 
 
         constructor(_position: Vector) {
             this.position = _position;
