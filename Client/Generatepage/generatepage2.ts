@@ -415,13 +415,16 @@ namespace AS_Zauberbild {
         }
     }
 
+
+
+
     function deleteImage(_event: Event): void {
         // crc2.clearRect(0, 0, canvas.width, canvas.height) hat getan als noch keine Elemente generiert wurden, jedoch dann nicht mehr
         shapes = [];
         console.log("Dein Zauberbild wurde gelöscht :( ")
     }
 
-    
+
 
 }
 
