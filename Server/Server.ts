@@ -104,7 +104,7 @@ export namespace AS_Zauberbild {
         _response.end();
     }
 
-    function storeSavedPictures(_savedpictures: savedPicture ): void {
+    function storeSavedPictures(_savedpictures: allpictures ): void {
         savedpictures.insert(_savedpictures);
     } 
 
