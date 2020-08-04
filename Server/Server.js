@@ -26,7 +26,7 @@ var AS_Zauberbild;
     let mongoClient;
     let options;
     let allpictures = [];
-    let databaseUrl = "mongodb+srv://beliema:<Wandalo2->@eia2-ejwj9.mongodb.net/<zauberbildDB>?retryWrites=true&w=majority";
+    let databaseUrl = "mongodb+srv://beliema:<Wandalo2->@eia2-ejwj9.mongodb.net/<zauberbildDB>?retryWrites=true&w=majority"; // Verbindungslink zu Mongo
     startServer(port);
     connectToDatabase(databaseUrl);
     function startServer(_port) {
@@ -45,7 +45,7 @@ var AS_Zauberbild;
             //Aufbau Verbindung 
             yield mongoClient.connect();
             //Wert für savedpictures definieren 
-            savedpictures = mongoClient.db("zauberbildDB").collection("savedpictures"); // Client wird gesagt: gehe in die Datenbank zauberbilddb und hole dir da die collection savedpictures 
+            savedpictures = mongoClient.db("zauberbildDB").collection("savedpictures"); // Client wird gesagt: gehe in die Datenbank zauberbilddb und hole dir da die Collection savedpictures 
             console.log("Database connection ", savedpictures != undefined);
         });
     }
@@ -59,26 +59,35 @@ var AS_Zauberbild;
                 let url = Url.parse(_request.url, true); //Übersetzung des URl mit Parse: Parse interpretiert URL und erzeugt neues Objekt, dessen Eigenschaft Query wieder ein assoz. Array darstellt (mit true)
                 let spliturl = _request.url.split("&"); //Aufteilung der URl 
                 if (spliturl[0] == "/?saveImage") {
-                    let savedpictures = mongoClient.db("Album").collection("Pictures");
-                    yield savedpictures.insertOne(url.query);
-                    let jsonString = JSON.stringify(allpictures);
-                    // orders = mongoClient.db("Album").collection("Pictures");
-                    // await (orders).insertOne(url.query);
-                    _response.write(jsonString);
+                    let savedpictures = mongoClient.db("zauberbildDB").collection("savedpictures"); // Zuordnnung der Daten an die Collection 
+                    yield savedpictures.insertOne(allpictures);
+                    //let jsonString: string = JSON.stringify(allpictures);
+                    _response.write("Dein Bild wurde gespeichert");
                     allpictures = [];
                 }
                 if (spliturl[0] == "/?getImage") {
-                    let savedpicture = mongoClient.db("Album").collection(spliturl[1]);
-                    yield savedpicture.forEach(showPicture);
+                    let picture = savedpictures.find({ name: spliturl[1] });
+                    yield picture.forEach(showSavedPictures);
                     let jsonString = JSON.stringify(allpictures);
+                    jsonString.toString();
+                    _response.write(jsonString);
+                    allpictures = [];
+                    /*let savedpicture: Mongo.Collection<any> = mongoClient.db("zauberebildDB").collection(spliturl[1]);
+                    await savedpicture.forEach(showPicture);
+                    let jsonString: string = JSON.stringify(allpictures);
                     jsonString.toString();
                     // let answer: string = jsonString.toString();
                     _response.write(jsonString); //Ausgeben des JSON-Strings
-                    allpictures = [];
+                    allpictures = [];*/
                 }
-                if (spliturl[0] == "/?insertName") {
-                    let pictures = mongoClient.db("zauberbildDB").collection("savedpictures");
-                    yield pictures.insertOne(url.query);
+                if (spliturl[0] == "/?getTitles") { //alle Titel aus Datenbank raussuchen
+                    let names = savedpictures.find({}, { projection: { _id: 0, name: true } }); //Aufruf um an die Titel zu kommen
+                    yield names.forEach(showSavedPictures); // Titel umschreiben in Jsonstring
+                    let jsonString = JSON.stringify(allpictures); //Array mit Titeln umschreiben
+                    jsonString.toString();
+                    _response.write(jsonString);
+                    _response.write(names.toString());
+                    allpictures = [];
                 }
                 /* for (let key in url.query) {
                      _response.write(key + ":" + url.query[key] + "<br/>");
@@ -94,13 +103,17 @@ var AS_Zauberbild;
             _response.end();
         });
     }
-    function storeSavedPictures(_savedpictures) {
+    /* function storeSavedPictures(_savedpictures: allpictures ): void {
         savedpictures.insert(_savedpictures);
-    }
+    } */
     function showPicture(_item) {
         for (let key in _item) {
             allpictures.push(key);
         }
+    }
+    function showSavedPictures(_item) {
+        let jsonString = JSON.stringify(_item);
+        allpictures.push(jsonString); //titel ins Array reinpushen
     }
     //Funktion: Daten aus der Datenbank auslesen 
     function receiveSavedPictures(_response) {
