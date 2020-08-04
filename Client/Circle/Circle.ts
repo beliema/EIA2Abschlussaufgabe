@@ -2,18 +2,12 @@ namespace AS_Zauberbild {
 
     export class Circle extends Shape {
 
-        color: String; 
-    
-
         constructor(_position: Vector) {
 
             super(_position);
 
             this.velocity = new Vector(0, 0);
             this.velocity.getRandom(200, 70);
-            // this.color = ["#F3F781", "#FAAC58", "#F78181", "#5882FA", "#01DF01", "#9F81F7"];
-
-
 
         }
 
@@ -35,8 +29,6 @@ namespace AS_Zauberbild {
         }
 
 
-
-
         public draw(): void {
 
             let r: number = 20;
@@ -52,17 +44,18 @@ namespace AS_Zauberbild {
             crc2.restore();
         }
 
-        private recolor(_color: String): void {
-            //  let colorArray: string[] = ["#F3F781", "#FAAC58", "#F78181", "#5882FA", "#01DF01", "#9F81F7"];
-            let i: number = 0;
-            crc2.fillStyle = i === 0 ? '#F3F781' : '#FAAC58';
-            crc2.arc(0, 0, 20, 0, 2 * Math.PI);
-            if (i === 0)
-                i = 1;
-            else
-                i = 0;
+        /* private recolor(_color: String): void {
+             //  let colorArray: string[] = ["#F3F781", "#FAAC58", "#F78181", "#5882FA", "#01DF01", "#9F81F7"];
+             let i: number = 0;
+             crc2.fillStyle = i === 0 ? '#F3F781' : '#FAAC58';
+             crc2.arc(0, 0, 20, 0, 2 * Math.PI);
+             if (i === 0)
+                 i = 1;
+             else
+                 i = 0;
+         }
         }
+        
+        // setInterval(recolor(_color: String), 50);*/
     }
-
-   // setInterval(recolor(_color: String), 50); 
 }

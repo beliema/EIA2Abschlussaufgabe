@@ -5,7 +5,6 @@ var AS_Zauberbild;
             super(_position);
             this.velocity = new AS_Zauberbild.Vector(0, 0);
             this.velocity.getRandom(200, 70);
-            // this.color = ["#F3F781", "#FAAC58", "#F78181", "#5882FA", "#01DF01", "#9F81F7"];
         }
         move(_timeslice) {
             let offset = new AS_Zauberbild.Vector(200, 70);
@@ -31,18 +30,7 @@ var AS_Zauberbild;
             AS_Zauberbild.crc2.fill();
             AS_Zauberbild.crc2.restore();
         }
-        recolor(_color) {
-            //  let colorArray: string[] = ["#F3F781", "#FAAC58", "#F78181", "#5882FA", "#01DF01", "#9F81F7"];
-            let i = 0;
-            AS_Zauberbild.crc2.fillStyle = i === 0 ? '#F3F781' : '#FAAC58';
-            AS_Zauberbild.crc2.arc(0, 0, 20, 0, 2 * Math.PI);
-            if (i === 0)
-                i = 1;
-            else
-                i = 0;
-        }
     }
     AS_Zauberbild.Circle = Circle;
-    // setInterval(recolor(_color: String), 50); 
 })(AS_Zauberbild || (AS_Zauberbild = {}));
 //# sourceMappingURL=Circle.js.map
