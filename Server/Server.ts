@@ -61,7 +61,7 @@ export namespace AS_Zauberbild {
             let spliturl: string[] = _request.url.split("&");  //Aufteilung der URl 
 
             if (spliturl[0] == "/?saveImage") {
-                let savedpictures= mongoClient.db("zauberebildDB").collection("savedpictures"); // Zuordnnung der Daten an die Collection 
+                let savedpictures= mongoClient.db("zauberbildDB").collection("savedpictures"); // Zuordnnung der Daten an die Collection 
                 await savedpictures.insertOne(savedpictures);
                 //let jsonString: string = JSON.stringify(allpictures);
                 _response.write("Dein Bild wurde gespeichert");
