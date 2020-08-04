@@ -421,6 +421,8 @@ namespace AS_Zauberbild {
         console.log("Dein Zauberbild wurde gelöscht :( ")
     }
 
+    
+
 }
 
 
